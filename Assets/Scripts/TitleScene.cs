@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class TitleScene : MonoBehaviour
 {
 
-    public void LoadScene(string SampleScene)
+    public void LoadScene()
     {
-        SceneManager.LoadScene(SampleScene);
+        SceneManager.LoadScene("SampleScene");
     }
     // Start is called before the first frame update
     void Start()
