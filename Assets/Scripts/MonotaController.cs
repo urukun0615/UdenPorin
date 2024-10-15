@@ -92,6 +92,9 @@ public class MonotaController : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = bulletSpawnPoint.forward * bulletSpeed;
 
+        MonotaBullet bulletScript = bullet.GetComponent<MonotaBullet>();
+        bulletScript.monota = this.gameObject; // Monotaオブジェクトを渡す
+
         // 弾丸が存在する間は発射できないようにする
         isBulletActive = true;
 

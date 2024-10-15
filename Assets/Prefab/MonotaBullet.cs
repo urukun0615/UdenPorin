@@ -5,7 +5,8 @@ using System;
 
 public class MonotaBullet : MonoBehaviour
 {
-    public GameObject Monota;
+    public float pullForce = 50f;
+    public GameObject monota;
     public event Action OnBulletDestroyed;
     
 
@@ -34,7 +35,13 @@ public class MonotaBullet : MonoBehaviour
         {
             Debug.Log("MonotaInteraction‚ÉÕ“Ë");
 
-
+            Rigidbody targetRb = collision.gameObject.GetComponent<Rigidbody>();
+            if (targetRb != null)
+            {
+                // Monota ‚Ì•ûŒü‚Éˆø‚«Šñ‚¹‚é—Í‚ğ‰Á‚¦‚é
+                Vector3 pullDirection = (monota.transform.position - collision.transform.position).normalized;
+                targetRb.AddForce(pullDirection * pullForce, ForceMode.Impulse);
+            }
         }
 
         // ’eŠÛ‚ª‰½‚©‚ÉÕ“Ë‚µ‚½‚Æ‚«‘¦À‚É”j‰ó‚·‚é
