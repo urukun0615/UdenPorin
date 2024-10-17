@@ -5,8 +5,7 @@ using System;
 
 public class MonotaBullet : MonoBehaviour
 {
-    public float pullForce = 50f;
-    public GameObject monota;
+    public GameObject Monota;
     public event Action OnBulletDestroyed;
     
 
@@ -15,7 +14,7 @@ public class MonotaBullet : MonoBehaviour
     {
         Destroy(gameObject, 1f);
 
-        // ’eŠÛ‚ÌRigidbody‚ªd—Í‚Ì‰e‹¿‚ğó‚¯‚È‚¢‚æ‚¤‚É‚·‚é
+        // ï¿½eï¿½Û‚ï¿½Rigidbodyï¿½ï¿½ï¿½dï¿½Í‚Ì‰eï¿½ï¿½ï¿½ï¿½ï¿½ó‚¯‚È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -29,28 +28,22 @@ public class MonotaBullet : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)//’eŠÛ‚ª‰½‚©‚ÉG‚ê‚½
+    void OnCollisionEnter(Collision collision)//ï¿½eï¿½Û‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉGï¿½ê‚½ï¿½ï¿½
     {
-        if (collision.gameObject.CompareTag("MonotaInteraction"))//MonotaInteraction‚Ìƒ^ƒO‚ª‚Â‚¢‚Ä‚éê‡
+        if (collision.gameObject.CompareTag("MonotaInteraction"))//MonotaInteractionï¿½Ìƒ^ï¿½Oï¿½ï¿½ï¿½Â‚ï¿½ï¿½Ä‚ï¿½ê‡
         {
-            Debug.Log("MonotaInteraction‚ÉÕ“Ë");
+            Debug.Log("MonotaInteractionï¿½ÉÕ“ï¿½");
 
-            Rigidbody targetRb = collision.gameObject.GetComponent<Rigidbody>();
-            if (targetRb != null)
-            {
-                // Monota ‚Ì•ûŒü‚Éˆø‚«Šñ‚¹‚é—Í‚ğ‰Á‚¦‚é
-                Vector3 pullDirection = (monota.transform.position - collision.transform.position).normalized;
-                targetRb.AddForce(pullDirection * pullForce, ForceMode.Impulse);
-            }
+
         }
 
-        // ’eŠÛ‚ª‰½‚©‚ÉÕ“Ë‚µ‚½‚Æ‚«‘¦À‚É”j‰ó‚·‚é
+        // ï¿½eï¿½Û‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉÕ“Ë‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É”jï¿½ó‚·‚ï¿½
         Destroy(gameObject);
     }
 
     void OnDestroy()
     {
-        // ’eŠÛ‚ªÁ‚¦‚é‚Æ‚«‚ÉƒCƒxƒ“ƒg‚ğ”­‰Î‚·‚é
+        // ï¿½eï¿½Û‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÉƒCï¿½xï¿½ï¿½ï¿½gï¿½ğ”­‰Î‚ï¿½ï¿½ï¿½
         OnBulletDestroyed?.Invoke();
     }
 }

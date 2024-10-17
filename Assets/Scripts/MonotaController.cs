@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MonotaController : MonoBehaviour
 {
-    [Header("ˆÚ“®‘¬“x")]
+    [Header("ï¿½Ú“ï¿½ï¿½ï¿½ï¿½x")]
     public float speed = 10.0f;
-    [Header("ƒWƒƒƒ“ƒv—Í")]
+    [Header("ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½")]
     public float jumpPower = 5f;
 
     public Rigidbody rb;
@@ -14,17 +14,37 @@ public class MonotaController : MonoBehaviour
     private IsGroundScript childScript;
 
 
-    //˜rL‚Î‚µ‹@”\‚Ég‚¤’eŠÛ
-    public GameObject bulletPrefab; // ’eŠÛ‚ÌƒvƒŒƒnƒu
-    public Transform bulletSpawnPoint; // ”­ËˆÊ’u
-    public float bulletSpeed = 10f; // ’eŠÛ‚Ì‘¬“x
+    //ï¿½rï¿½Lï¿½Î‚ï¿½ï¿½@ï¿½\ï¿½Égï¿½ï¿½ï¿½eï¿½ï¿½
+    public GameObject bulletPrefab; // ï¿½eï¿½Û‚Ìƒvï¿½ï¿½ï¿½nï¿½u
+    public Transform bulletSpawnPoint; // ï¿½ï¿½ï¿½ËˆÊ’u
+    public float bulletSpeed = 10f; // ï¿½eï¿½Û‚Ì‘ï¿½ï¿½x
+    private bool isBulletActive = false;
+
+    [Header("ï¿½Ú“ï¿½ï¿½ï¿½ï¿½x")]
+    public float speed = 10.0f;
+    [Header("ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½")]
+    public float jumpPower = 5f;
+
+    public Rigidbody rb;
+    public Camera playerCamera;
+    private IsGroundScript childScript;
+
+
+    //ï¿½rï¿½Lï¿½Î‚ï¿½ï¿½@ï¿½\ï¿½Égï¿½ï¿½ï¿½eï¿½ï¿½
+    public GameObject bulletPrefab; // ï¿½eï¿½Û‚Ìƒvï¿½ï¿½ï¿½nï¿½u
+    public Transform bulletSpawnPoint; // ï¿½ï¿½ï¿½ËˆÊ’u
+    public float bulletSpeed = 10f; // ï¿½eï¿½Û‚Ì‘ï¿½ï¿½x
     private bool isBulletActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject childObject = transform.Find("MonotaisGroundTrigger").gameObject;//“–‚½‚è”»’è‚Ég‚Á‚Ä‚¢‚éqƒIƒuƒWƒFƒNƒgæ“¾
-        childScript = childObject.GetComponent<IsGroundScript>();//ƒtƒB[ƒ‹ƒh‚É‘ã“ü
+        GameObject childObject = transform.Find("MonotaisGroundTrigger").gameObject;//ï¿½ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½Égï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½qï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½æ“¾
+        childScript = childObject.GetComponent<IsGroundScript>();//ï¿½tï¿½Bï¿½[ï¿½ï¿½ï¿½hï¿½É‘ï¿½ï¿½
+
+        rb = GetComponent<Rigidbody>();
+        GameObject childObject = transform.Find("MonotaisGroundTrigger").gameObject;//ï¿½ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½Égï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½qï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½æ“¾
+        childScript = childObject.GetComponent<IsGroundScript>();//ï¿½tï¿½Bï¿½[ï¿½ï¿½ï¿½hï¿½É‘ï¿½ï¿½
 
         rb = GetComponent<Rigidbody>();
     }
@@ -36,7 +56,7 @@ public class MonotaController : MonoBehaviour
 
         
 
-        //ADƒL[æ“¾
+        //ADï¿½Lï¿½[ï¿½æ“¾
         float horizontal = Input.GetAxis("Horizontal");
 
         // Get the direction the camera is facing
@@ -52,15 +72,15 @@ public class MonotaController : MonoBehaviour
         // Move the player
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
 
-        //ƒvƒŒƒCƒ„[‚Ì•ûŒü“]Š·
+        //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì•ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½
         if (Input.GetKeyDown(KeyCode.A))
         {
-            // AƒL[‚ğ‰Ÿ‚µ‚½‚Æ‚«‚É¶‚ğŒü‚­iY²‚Å180“x‰ñ“]j
+            // Aï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iYï¿½ï¿½ï¿½ï¿½180ï¿½xï¿½ï¿½]ï¿½j
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            // DƒL[‚ğ‰Ÿ‚µ‚½‚Æ‚«‚É‰E‚ğŒü‚­iY²‚Å0“x‰ñ“]j
+            // Dï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½É‰Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iYï¿½ï¿½ï¿½ï¿½0ï¿½xï¿½ï¿½]ï¿½j
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
@@ -93,17 +113,17 @@ public class MonotaController : MonoBehaviour
         rb.velocity = bulletSpawnPoint.forward * bulletSpeed;
 
         MonotaBullet bulletScript = bullet.GetComponent<MonotaBullet>();
-        bulletScript.monota = this.gameObject; // MonotaƒIƒuƒWƒFƒNƒg‚ğ“n‚·
+        bulletScript.monota = this.gameObject; // Monotaï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½nï¿½ï¿½
 
-        // ’eŠÛ‚ª‘¶İ‚·‚éŠÔ‚Í”­Ë‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
+        // ï¿½eï¿½Û‚ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½Ô‚Í”ï¿½ï¿½Ë‚Å‚ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
         isBulletActive = true;
 
-        // ’eŠÛ‚ªÁ‚¦‚éƒ^ƒCƒ~ƒ“ƒO‚Åƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+        // ï¿½eï¿½Û‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½Cï¿½~ï¿½ï¿½ï¿½Oï¿½Åƒtï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ï¿½
         bullet.GetComponent<MonotaBullet>().OnBulletDestroyed += ResetShootFlag;
     }
 
     void ResetShootFlag()
     {
-        isBulletActive = false; // ’eŠÛ‚ªÁ‚¦‚½‚çÄ”­Ë‰Â”\‚É‚·‚é
+        isBulletActive = false; // ï¿½eï¿½Û‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä”ï¿½ï¿½Ë‰Â”\ï¿½É‚ï¿½ï¿½ï¿½
     }
 }
