@@ -29,7 +29,7 @@ public class MonotaBullet : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)//’eŠÛ‚ª‰½‚©‚ÉG‚ê‚½‚ç
+    void OnCollisionEnter(Collision collision)//’eŠÛ‚ª‰½‚©‚ÉG‚ê‚½
     {
         if (collision.gameObject.CompareTag("MonotaInteraction"))//MonotaInteraction‚Ìƒ^ƒO‚ª‚Â‚¢‚Ä‚éê‡
         {
