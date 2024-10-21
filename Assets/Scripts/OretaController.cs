@@ -37,7 +37,7 @@ public class OretaController : MonoBehaviour
 
 
         //ADÉLÅ[éÊìæ
-        float horizontal = Input.GetAxis("Horizontal");
+        float horizontal1 = Input.GetAxis("Horizontal1");
 
         // Get the direction the camera is facing
         Vector3 right = playerCamera.transform.right;
@@ -47,7 +47,7 @@ public class OretaController : MonoBehaviour
         right.Normalize();
 
         // Calculate the direction based on the input
-        Vector3 direction = right * horizontal;
+        Vector3 direction = right * horizontal1;
 
         // Move the player
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
@@ -79,7 +79,7 @@ public class OretaController : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !isBulletActive)
+        if (Input.GetKeyDown(KeyCode.E) && !isBulletActive)
         {
             ShootBullet();
         }
