@@ -21,7 +21,7 @@ public class WallRisingSwitch : MonoBehaviour
     {
         if (switchPushing)
         {
-            LWall.transform.position += new Vector3(0, 1 * Time.deltaTime, 0);
+            LWall.transform.position += new Vector3(0, 5 * Time.deltaTime, 0);
         }
     }
 
