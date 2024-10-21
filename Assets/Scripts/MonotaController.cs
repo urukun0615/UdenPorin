@@ -20,21 +20,7 @@ public class MonotaController : MonoBehaviour
     public float bulletSpeed = 10f; // �e�ۂ̑��x
     private bool isBulletActive = false;
 
-    [Header("�ړ����x")]
-    public float speed = 10.0f;
-    [Header("�W�����v��")]
-    public float jumpPower = 5f;
-
-    public Rigidbody rb;
-    public Camera playerCamera;
-    private IsGroundScript childScript;
-
-
-    //�r�L�΂��@�\�Ɏg���e��
-    public GameObject bulletPrefab; // �e�ۂ̃v���n�u
-    public Transform bulletSpawnPoint; // ���ˈʒu
-    public float bulletSpeed = 10f; // �e�ۂ̑��x
-    private bool isBulletActive = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -43,10 +29,7 @@ public class MonotaController : MonoBehaviour
         childScript = childObject.GetComponent<IsGroundScript>();//�t�B�[���h�ɑ��
 
         rb = GetComponent<Rigidbody>();
-        GameObject childObject = transform.Find("MonotaisGroundTrigger").gameObject;//�����蔻��Ɏg���Ă���q�I�u�W�F�N�g�擾
-        childScript = childObject.GetComponent<IsGroundScript>();//�t�B�[���h�ɑ��
-
-        rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -113,7 +96,7 @@ public class MonotaController : MonoBehaviour
         rb.velocity = bulletSpawnPoint.forward * bulletSpeed;
 
         MonotaBullet bulletScript = bullet.GetComponent<MonotaBullet>();
-        bulletScript.monota = this.gameObject; // Monota�I�u�W�F�N�g��n��
+        bulletScript.Monota = this.gameObject; // Monota�I�u�W�F�N�g��n��
 
         // �e�ۂ����݂���Ԃ͔��˂ł��Ȃ��悤�ɂ���
         isBulletActive = true;
